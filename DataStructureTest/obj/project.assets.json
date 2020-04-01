@@ -4649,11 +4649,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/olegsitikov/Projects/DataStructure/DataStructureTest/DataStructureTest.csproj",
+      "projectUniqueName": "/Users/olegsitikov/Projects/DataStructure1/DataStructureTest/DataStructureTest.csproj",
       "projectName": "DataStructureTest",
-      "projectPath": "/Users/olegsitikov/Projects/DataStructure/DataStructureTest/DataStructureTest.csproj",
+      "projectPath": "/Users/olegsitikov/Projects/DataStructure1/DataStructureTest/DataStructureTest.csproj",
       "packagesPath": "/Users/olegsitikov/.nuget/packages/",
-      "outputPath": "/Users/olegsitikov/Projects/DataStructure/DataStructureTest/obj/",
+      "outputPath": "/Users/olegsitikov/Projects/DataStructure1/DataStructureTest/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/olegsitikov/.config/NuGet/NuGet.Config"
@@ -4667,8 +4667,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "/Users/olegsitikov/Projects/DataStructure/DataStructure/DataStructure.csproj": {
-              "projectPath": "/Users/olegsitikov/Projects/DataStructure/DataStructure/DataStructure.csproj"
+            "/Users/olegsitikov/Projects/DataStructure1/DataStructure/DataStructure.csproj": {
+              "projectPath": "/Users/olegsitikov/Projects/DataStructure1/DataStructure/DataStructure.csproj"
             }
           }
         }

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/olegsitikov/Projects/DataStructure/DataStructure/DataStructure.csproj",
+      "projectUniqueName": "/Users/olegsitikov/Projects/DataStructure1/DataStructure/DataStructure.csproj",
       "projectName": "DataStructure",
-      "projectPath": "/Users/olegsitikov/Projects/DataStructure/DataStructure/DataStructure.csproj",
+      "projectPath": "/Users/olegsitikov/Projects/DataStructure1/DataStructure/DataStructure.csproj",
       "packagesPath": "/Users/olegsitikov/.nuget/packages/",
-      "outputPath": "/Users/olegsitikov/Projects/DataStructure/DataStructure/obj/",
+      "outputPath": "/Users/olegsitikov/Projects/DataStructure1/DataStructure/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/olegsitikov/.config/NuGet/NuGet.Config"

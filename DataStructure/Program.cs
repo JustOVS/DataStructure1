@@ -51,8 +51,8 @@ namespace DataStructure
             //    Console.WriteLine(a[i]);
             //}
             //Console.WriteLine(a.Length);
-            IDataStructure aaa = new LinkedList(new int[] { 1, 2, 3 });
-            aaa.Reverse();
+            IDataStructure aaa = new LinkedList(new int[] { 3, 2, 4, 1});
+            aaa.SortUp();
             int[] b = aaa.ReturnMassive();
             for (int i = 0; i < b.Length; i++)
             {
@@ -60,7 +60,7 @@ namespace DataStructure
 
 
             }
-            Console.WriteLine("-", 50);
+            //Console.WriteLine("-", 50);
             
         }
     }

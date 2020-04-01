@@ -37,8 +37,33 @@ namespace DataStructure
         {
             get
             {
-                int[] array = this.ReturnMassive();
-                return array[index]; //5-7 доступ по индексу
+                if (index == Length - 1)
+                {
+                    return last.Value;
+                }
+                else if (index == 0)
+                {
+                    return first.Value; 
+                }
+                else if (index < 0 || index > Length - 1)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                else
+                {
+                    Node current = first;
+
+                    for (int i = 0; i < index; i++)
+                    {
+                        current = current.Next;
+                    }
+
+                    return current.Value;
+                }
+
+
+                //int[] array = this.ReturnMassive();
+                //return array[index]; //5-7 доступ по индексу
             }
 
             set
@@ -350,42 +375,111 @@ namespace DataStructure
 
         public void SortUp()
         {
+            Node tmpListFirst = null;
+            Node tmpListLast = null;
+
             for (int i = 0; i < Length; i++)
             {
                 Node current = first;
-                for (int j = 1; j < Length - i; j++)
+                Node previous = first;
+                Node min = first;
+                Node minPrevious = first;
+                
+                while (current != null)
                 {
-                    if (current.Value > current.Next.Value)
+                    if (current.Value < min.Value)
                     {
-                        int tmp = current.Next.Value;
-                        current.Next.Value = current.Value;
-                        current.Value = tmp;
-                        
-                        
+                        min = current;
+                        minPrevious = previous;
                     }
+                    previous = current;
                     current = current.Next;
-               
                 }
-
+               
+                if (min == first)
+                {
+                    first = first.Next;
+                }
+                else if (min == last) 
+                {
+                    minPrevious.Next = null;
+                    last = minPrevious;
+                }
+                else
+                {
+                    minPrevious.Next = minPrevious.Next.Next;
+                }
+                
+                if (tmpListFirst != null)
+                {
+                    tmpListLast.Next = min;
+                    tmpListLast = tmpListLast.Next;
+                }
+                else
+                {
+                    tmpListFirst = min;
+                    tmpListLast = tmpListFirst;
+                }
             }
+            first = tmpListFirst;
+            last = tmpListLast;
         }
+
+
+
+
+    
 
         public void SortDown()
         {
+            Node tmpListFirst = null;
+            Node tmpListLast = null;
+
             for (int i = 0; i < Length; i++)
             {
                 Node current = first;
-                for (int j = 1; j < Length - i; j++)
+                Node previous = first;
+                Node max = first;
+                Node maxPrevious = first;
+
+                while (current != null)
                 {
-                    if (current.Value < current.Next.Value)
+                    if (current.Value > max.Value)
                     {
-                        int tmp = current.Next.Value;
-                        current.Next.Value = current.Value;
-                        current.Value = tmp;
+                        max = current;
+                        maxPrevious = previous;
                     }
+                    previous = current;
                     current = current.Next;
                 }
+
+                if (max == first)
+                {
+                    first = first.Next;
+                }
+                else if (max == last)
+                {
+                    maxPrevious.Next = null;
+                    last = maxPrevious;
+                }
+                else
+                {
+                    maxPrevious.Next = maxPrevious.Next.Next;
+                }
+
+                if (tmpListFirst != null)
+                {
+                    tmpListLast.Next = max;
+                    tmpListLast = tmpListLast.Next;
+                }
+                else
+                {
+                    tmpListFirst = max;
+                    tmpListLast = tmpListFirst;
+                }
             }
+            first = tmpListFirst;
+            last = tmpListLast;
         }
 
         public void RemoveItem(int item)
