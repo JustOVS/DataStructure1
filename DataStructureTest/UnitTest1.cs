@@ -28,7 +28,7 @@ namespace DataStructureTest
                     break;
                 case 2: testList = new LinkedList();
                     break;
-                case 3: testList = new DoubleLinkedList();
+                case 3: testList = new L2List();
                     break;
 
             }
@@ -255,6 +255,7 @@ namespace DataStructureTest
         [TestCase(1, new int[] { 1, 3, 2 }, ExpectedResult = 3)]
         [TestCase(3, new int[] { 8, 0, 1, 5 }, ExpectedResult = 5)]
         [TestCase(0, new int[] { 1 }, ExpectedResult = 1)]
+        [TestCase(4, new int[] { 5, 3, 8, 4, 9, 10, 45}, ExpectedResult = 9)]
         public int GetIndexatorTest(int index, int[] massive)
         {
             testList.Add(massive);
@@ -265,6 +266,7 @@ namespace DataStructureTest
         [TestCase(1, 5, new int[] { 1, 3, 2 }, ExpectedResult = new int[] { 1, 5, 2 })]
         [TestCase(3, 7, new int[] { 8, 0, 1, 5 }, ExpectedResult = new int[] { 8, 0, 1, 7 })]
         [TestCase(0, 5, new int[] { 1 }, ExpectedResult = new int[] { 5 })]
+        [TestCase(4, 7, new int[] { 5, 3, 8, 4, 9, 10, 45 }, ExpectedResult = new int[] { 5, 3, 8, 4, 7, 10, 45 })]
         public int[] SetIndexatorTest(int index,int value, int[] massive)
         {
             testList.Add(massive);

@@ -1,27 +1,29 @@
 ﻿using System;
 namespace DataStructure
 {
-    public class DoubleLinkedList : IDataStructure
+    public class L2List : IDataStructure
     {
-        private Node2d first;
-        private Node2d last;
+
+
+        private L2Node first;
+        private L2Node last;
         public int Length { get; private set; }
 
-        public DoubleLinkedList()
+        public L2List()
         {
             first = null;
             last = null;
             Length = 0;
         }
 
-        public DoubleLinkedList(int a)
+        public L2List(int a)
         {
-            first = new Node2d(a);
+            first = new L2Node(a);
             last = first;
             Length = 1;
         }
 
-        public DoubleLinkedList(int[] a)
+        public L2List(int[] a)
         {
             for (int i = 0; i < a.Length; i++)
             {
@@ -45,9 +47,9 @@ namespace DataStructure
                 {
                     throw new IndexOutOfRangeException();
                 }
-                else
+                else if (index <= Length/2)
                 {
-                    Node2d current = first;
+                    L2Node current = first;
 
                     for (int i = 0; i < index; i++)
                     {
@@ -56,10 +58,20 @@ namespace DataStructure
 
                     return current.Value;
                 }
+                else
+                {
+                    L2Node current = last;
+
+                    for (int i = 0; i < Length - 1 - index; i++)
+                    {
+                        current = current.Previous;
+                    }
+
+                    return current.Value;
+                }
 
 
-                //int[] array = this.ReturnMassive();
-                //return array[index]; //5-7 доступ по индексу
+                
             }
 
             set
@@ -75,13 +87,24 @@ namespace DataStructure
                 else if (index < 0 || index > Length - 1)
                 {
                 }
-                else
+                else if (index <= Length / 2)
                 {
-                    Node2d current = first;
+                    L2Node current = first;
 
                     for (int i = 0; i < index; i++)
                     {
                         current = current.Next;
+                    }
+
+                    current.Value = value;
+                }
+                else
+                {
+                    L2Node current = last;
+
+                    for (int i = 0; i < Length - 1 - index; i++)
+                    {
+                        current = current.Previous;
                     }
 
                     current.Value = value;
@@ -93,13 +116,13 @@ namespace DataStructure
         {
             if (first == null)
             {
-                first = new Node2d(a);
+                first = new L2Node(a);
                 last = first;
                 Length = 1;
             }
             else
             {
-                last.Next = new Node2d(a);
+                last.Next = new L2Node(a);
                 last.Next.Previous = last;
                 last = last.Next;
                 Length++;
@@ -113,7 +136,7 @@ namespace DataStructure
             if (Length != 0)
             {
                 int i = 0;
-                Node2d tmp = first;
+                L2Node tmp = first;
                 do
                 {
                     array[i] = tmp.Value;
@@ -123,19 +146,19 @@ namespace DataStructure
             }
             return array;
         }
-
+      
         public void AddToStart(int a)
         {
             if (first != null)
             {
-                Node2d tmp = new Node2d(a);
-                tmp.Next = first;
-                first = tmp;
+                first.Previous = new L2Node(a);
+                first.Previous.Next = first;
+                first = first.Previous;
                 Length++;
             }
             else
             {
-                first = new Node2d(a);
+                first = new L2Node(a);
                 last = first;
                 Length = 1;
             }
@@ -173,13 +196,8 @@ namespace DataStructure
             }
             else
             {
-                Node2d current = first;
-                while (current.Next != last)
-                {
-                    current = current.Next;
-                }
-                current.Next = null;
-                last = current;
+                last.Previous.Next = null;
+                last = last.Previous;
                 Length--;
             }
         }
@@ -207,6 +225,7 @@ namespace DataStructure
             else
             {
                 first = first.Next;
+                first.Previous = null;
                 Length--;
             }
         }
@@ -233,20 +252,39 @@ namespace DataStructure
             {
                 this.Add(item);
             }
-            else
+            else if (index <= Length / 2)
             {
-                Node2d tmp = new Node2d(item);
-                Node2d previous = first;
+                L2Node tmp = new L2Node(item);
+                L2Node previous = first;
 
                 for (int i = 0; i < index - 1; i++)
                 {
                     previous = previous.Next;
                 }
                 tmp.Next = previous.Next;
+                previous.Next.Previous = tmp;
                 previous.Next = tmp;
+                tmp.Previous = tmp;
 
                 Length++;
             }
+            else
+            {
+                L2Node tmp = new L2Node(item);
+                L2Node previous = last;
+
+                for (int i = 0; i < Length - index; i++)
+                {
+                    previous = previous.Previous;
+                }
+                tmp.Next = previous.Next;
+                previous.Next.Previous = tmp;
+                previous.Next = tmp;
+                tmp.Previous = tmp;
+
+                Length++;
+            }
+            
         }
 
         public void Insert(int[] addmassive, int index)
@@ -271,9 +309,9 @@ namespace DataStructure
             {
                 this.Remove();
             }
-            else
+            else if (index <= Length/2)
             {
-                Node2d previous = first;
+                L2Node previous = first;
 
                 for (int i = 0; i < index - 1; i++)
                 {
@@ -281,15 +319,75 @@ namespace DataStructure
                 }
 
                 previous.Next = previous.Next.Next;
+                previous.Next.Previous = previous;
+                Length--;
+            }
+            else
+            {
+                L2Node previous = last;
+
+                for (int i = 0; i < Length - index; i++)
+                {
+                    previous = previous.Previous;
+                }
+
+                previous.Next = previous.Next.Next;
+                previous.Next.Previous = previous;
                 Length--;
             }
         }
 
         public void RemoveOfIndex(int index, int quantity)
         {
-            for (int i = 0; i < quantity; i++)
+            //for (int i = 0; i < quantity; i++)
+            //{
+            //    this.RemoveOfIndex(index);
+            //}
+            if (index == 0)
             {
-                this.RemoveOfIndex(index);
+                this.RemoveFromStart(quantity);
+
+            }
+            else if (index < 0 || index > Length - 1)
+            {
+            }
+            else if (index == Length - quantity)
+            {
+                this.Remove(quantity);
+            }
+            else if (index <= Length / 2)
+            {
+                L2Node previous = first;
+
+                for (int i = 0; i < index - 1; i++)
+                {
+                    previous = previous.Next;
+                }
+                L2Node next = previous;
+                for (int i = 0; i <= quantity; i++)
+                {
+                    next = next.Next;
+                }
+                previous.Next = next;
+                next.Previous = previous;
+                Length-= quantity;
+            }
+            else
+            {
+                L2Node previous = last;
+
+                for (int i = 0; i < Length - index; i++)
+                {
+                    previous = previous.Previous;
+                }
+                L2Node next = previous;
+                for (int i = 0; i <= quantity; i++)
+                {
+                    next = next.Next;
+                }
+                previous.Next = next;
+                next.Previous = previous;
+                Length -= quantity;
             }
         }
 
@@ -297,7 +395,7 @@ namespace DataStructure
 
         public int IndexOfItem(int item)
         {
-            Node2d current = first;
+            L2Node current = first;
             int count = 0;
             while (current != null)
             {
@@ -320,25 +418,24 @@ namespace DataStructure
 
         public void Reverse()
         {
-            Node2d previous = null;
-            Node2d current = first;
-            Node2d next = null;
+            L2Node current = first;
+            L2Node tmp = first;
             first = last;
             last = current;
 
             while (current != null)
             {
-                next = current.Next;
-                current.Next = previous;
-                previous = current;
-                current = next;
+                tmp = current.Next;
+                current.Next = current.Previous;
+                current.Previous = tmp;
+                current = tmp;
             }
 
         }
 
         public int MinItem()
         {
-            Node2d current = first;
+            L2Node current = first;
             int min = current.Value;
             while (current != null)
             {
@@ -355,7 +452,7 @@ namespace DataStructure
 
         public int MaxItem()
         {
-            Node2d current = first;
+            L2Node current = first;
             int max = current.Value;
             while (current != null)
             {
@@ -372,44 +469,49 @@ namespace DataStructure
 
         public void SortUp()
         {
-            Node2d tmpListFirst = null;
-            Node2d tmpListLast = null;
+            L2Node tmpListFirst = null;
+            L2Node tmpListLast = null;
 
             for (int i = 0; i < Length; i++)
             {
-                Node2d current = first;
-                Node2d previous = first;
-                Node2d min = first;
-                Node2d minPrevious = first;
+                L2Node current = first;
+                L2Node min = first;
+
 
                 while (current != null)
                 {
                     if (current.Value < min.Value)
                     {
                         min = current;
-                        minPrevious = previous;
                     }
-                    previous = current;
                     current = current.Next;
                 }
-
-                if (min == first)
+                if (first == last)
                 {
+                    first = null;
+                    last = null;
+                }
+                else if (min == first)
+                {
+                    first.Next.Previous = null;
                     first = first.Next;
+
                 }
                 else if (min == last)
                 {
-                    minPrevious.Next = null;
-                    last = minPrevious;
+                    last.Previous.Next = null;
+                    last = last.Previous;
                 }
                 else
                 {
-                    minPrevious.Next = minPrevious.Next.Next;
+                    min.Previous.Next = min.Next;
+                    min.Next.Previous = min.Previous;
                 }
 
                 if (tmpListFirst != null)
                 {
                     tmpListLast.Next = min;
+                    min.Previous = tmpListLast;
                     tmpListLast = tmpListLast.Next;
                 }
                 else
@@ -429,44 +531,49 @@ namespace DataStructure
 
         public void SortDown()
         {
-            Node2d tmpListFirst = null;
-            Node2d tmpListLast = null;
+            L2Node tmpListFirst = null;
+            L2Node tmpListLast = null;
 
             for (int i = 0; i < Length; i++)
             {
-                Node2d current = first;
-                Node2d previous = first;
-                Node2d max = first;
-                Node2d maxPrevious = first;
+                L2Node current = first;
+                L2Node max = first;
+
 
                 while (current != null)
                 {
                     if (current.Value > max.Value)
                     {
                         max = current;
-                        maxPrevious = previous;
                     }
-                    previous = current;
                     current = current.Next;
                 }
-
-                if (max == first)
+                if (first == last)
                 {
+                    first = null;
+                    last = null;
+                }
+                else if (max == first)
+                {
+                    first.Next.Previous = null;
                     first = first.Next;
+
                 }
                 else if (max == last)
                 {
-                    maxPrevious.Next = null;
-                    last = maxPrevious;
+                    last.Previous.Next = null;
+                    last = last.Previous;
                 }
                 else
                 {
-                    maxPrevious.Next = maxPrevious.Next.Next;
+                    max.Previous.Next = max.Next;
+                    max.Next.Previous = max.Previous;
                 }
 
                 if (tmpListFirst != null)
                 {
                     tmpListLast.Next = max;
+                    max.Previous = tmpListLast;
                     tmpListLast = tmpListLast.Next;
                 }
                 else
@@ -481,8 +588,8 @@ namespace DataStructure
 
         public void RemoveItem(int item)
         {
-            Node2d previous = null;
-            Node2d current = first;
+            L2Node previous = null;
+            L2Node current = first;
 
             while (current != null)
             {
@@ -508,7 +615,7 @@ namespace DataStructure
 
         public int MinItemIndex()
         {
-            Node2d current = first;
+            L2Node current = first;
             int min = current.Value;
             int count = 0;
             int minIndex = 0;
@@ -528,7 +635,7 @@ namespace DataStructure
 
         public int MaxItemIndex()
         {
-            Node2d current = first;
+            L2Node current = first;
             int max = current.Value;
             int count = 0;
             int maxIndex = 0;

@@ -51,7 +51,7 @@ namespace DataStructure
             //    Console.WriteLine(a[i]);
             //}
             //Console.WriteLine(a.Length);
-            IDataStructure aaa = new LinkedList(new int[] { 3, 2, 4, 1});
+            IDataStructure aaa = new L2List(new int[] {4, 3, 5, 8});
             aaa.SortUp();
             int[] b = aaa.ReturnMassive();
             for (int i = 0; i < b.Length; i++)
