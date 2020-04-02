@@ -588,25 +588,36 @@ namespace DataStructure
 
         public void RemoveItem(int item)
         {
-            L2Node previous = null;
+            
             L2Node current = first;
 
             while (current != null)
             {
-                if (current.Value == item && previous == null)
+                if (current.Value == item && first == last)
                 {
+                    first = null;
+                    last = null;
+                    Length--;
+                }
+                else if (current.Value == item && current.Previous == null)
+                {
+                    current.Next.Previous = null;
                     first = current.Next;
+                    Length--;
+                }
+                else if (current.Value == item && current.Next == null)
+                {
+                    current.Previous.Next = null;
+                    last = current.Previous;
                     Length--;
                 }
                 else if (current.Value == item)
                 {
-                    previous.Next = current.Next;
+                    current.Previous.Next = current.Next;
+                    current.Next.Previous = current.Previous;
                     Length--;
                 }
-                else
-                {
-                    previous = current;
-                }
+                
                 current = current.Next;
 
             }
