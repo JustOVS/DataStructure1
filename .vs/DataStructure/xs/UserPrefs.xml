@@ -2,12 +2,12 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="DataStructure/LinkedList.cs">
     <Files>
       <File FileName="DataStructure/LinkedList.cs" Line="381" Column="13" />
-      <File FileName="DataStructure/Program.cs" Line="54" Column="71" />
-      <File FileName="DataStructure/IDataStructure.cs" Line="1" Column="1" />
-      <File FileName="DataStructure/Node.cs" Line="18" Column="10" />
+      <File FileName="DataStructure/Program.cs" />
+      <File FileName="DataStructure/IDataStructure.cs" />
+      <File FileName="DataStructure/Node.cs" />
       <File FileName="DataStructure/ArrayList.cs" />
-      <File FileName="DataStructure/Node2d.cs" Line="24" Column="1" />
-      <File FileName="DataStructure/DoubleLinkedList.cs" Line="1" Column="1" />
+      <File FileName="DataStructure/Node2d.cs" />
+      <File FileName="DataStructure/DoubleLinkedList.cs" />
       <File FileName="DataStructureTest/UnitTest1.cs" Line="272" Column="1" NotebookId="1" />
     </Files>
     <Pads>
