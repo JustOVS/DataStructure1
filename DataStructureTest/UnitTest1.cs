@@ -5,6 +5,7 @@ namespace DataStructureTest
 {
     [TestFixture(1)]
     [TestFixture(2)]
+    [TestFixture(3)]
 
 
 
@@ -27,6 +28,9 @@ namespace DataStructureTest
                     break;
                 case 2: testList = new LinkedList();
                     break;
+                case 3: testList = new DoubleLinkedList();
+                    break;
+
             }
         }
 
