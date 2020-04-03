@@ -325,7 +325,7 @@ namespace DataStructure
         {
             Node previous = null;
             Node current = first;
-            Node next = null;
+            Node next;
             first = last;
             last = current;
 

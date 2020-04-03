@@ -1,18 +1,20 @@
 ﻿<Properties StartupConfiguration="{00E3E966-9543-40AC-A90B-B830BF34BE18}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="DataStructure/LinkedList.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DataStructure/IDataStructure.cs">
     <Files>
-      <File FileName="DataStructure/Program.cs" Line="1" Column="1" />
+      <File FileName="DataStructure/Program.cs" Line="67" Column="6" />
       <File FileName="DataStructure/Node2d.cs" Line="4" Column="24" />
-      <File FileName="DataStructure/DoubleLinkedList.cs" Line="111" Column="18" />
+      <File FileName="DataStructure/DoubleLinkedList.cs" Line="600" Column="31" />
       <File FileName="DataStructure/LinkedList.cs" Line="1" Column="1" />
-      <File FileName="DataStructureTest/UnitTest1.cs" Line="273" Column="37" NotebookId="1" />
+      <File FileName="DataStructure/ArrayList.cs" Line="1" Column="1" />
+      <File FileName="DataStructure/IDataStructure.cs" Line="1" Column="1" />
+      <File FileName="DataStructureTest/UnitTest1.cs" Line="77" Column="1" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="DataStructure" expanded="True">
             <Node name="DataStructure" expanded="True">
-              <Node name="LinkedList.cs" selected="True" />
+              <Node name="IDataStructure.cs" selected="True" />
             </Node>
             <Node name="DataStructureTest" expanded="True" />
           </Node>
@@ -29,7 +31,9 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/olegsitikov/Projects/DataStructure1/DataStructure/DoubleLinkedList.cs" relfile="DataStructure/DoubleLinkedList.cs" line="186" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

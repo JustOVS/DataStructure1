@@ -51,7 +51,7 @@ namespace DataStructure
             //    Console.WriteLine(a[i]);
             //}
             //Console.WriteLine(a.Length);
-            IDataStructure aaa = new L2List(new int[] {4, 3, 5, 8});
+            IDataStructure aaa = new L2List(new int[] {});
             aaa.SortUp();
             int[] b = aaa.ReturnMassive();
             for (int i = 0; i < b.Length; i++)
@@ -60,6 +60,7 @@ namespace DataStructure
 
 
             }
+            IDataStructure bbb = new LinkedList(new int[] { });
             //Console.WriteLine("-", 50);
             
         }

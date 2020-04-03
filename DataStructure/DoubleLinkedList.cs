@@ -597,7 +597,7 @@ namespace DataStructure
                 {
                     first = null;
                     last = null;
-                    Length--;
+                    Length--; 
                 }
                 else if (current.Value == item && current.Previous == null)
                 {
