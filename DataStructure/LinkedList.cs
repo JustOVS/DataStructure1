@@ -189,10 +189,34 @@ namespace DataStructure
 
         public void Remove(int quantity)
         {
-            for (int i = 0; i < quantity; i++)
+            //for (int i = 0; i < quantity; i++)
+            //{
+            //    this.Remove();
+            //}
+
+            if (first == last || quantity >= Length)
             {
-                this.Remove();
+                first = null;
+                last = null;
+                Length = 0;
             }
+            else if (first == null)
+            {
+
+            }
+            else
+            {
+                Node current = first;
+                for (int i = 0; i < Length - quantity - 1; i++)
+                {
+                    current = current.Next;
+                }
+                current.Next = null;
+                last = current;
+                Length-= quantity;
+            }
+            
+           
         }
 
         public void RemoveFromStart()
@@ -216,9 +240,21 @@ namespace DataStructure
 
         public void RemoveFromStart(int quantity)
         {
-            for (int i = 0; i < quantity; i++)
+            //for (int i = 0; i < quantity; i++)
+            //{
+            //    this.RemoveFromStart();
+            //}
+            if (quantity >= Length)
             {
-                this.RemoveFromStart();
+                this.Clear();
+            }
+            else
+            {
+                for (int i = 0; i < quantity; i++)
+                {
+                    first = first.Next;
+                    Length--;
+                }
             }
         }
 
@@ -254,10 +290,42 @@ namespace DataStructure
 
         public void Insert(int[] addmassive, int index)
         {
-            for (int i = 0; i < addmassive.Length; i++)
+            //for (int i = 0; i < addmassive.Length; i++)
+            //{
+            //    this.Insert(addmassive[i], index + i);
+            //}
+            if (index == 0)
             {
-                this.Insert(addmassive[i], index + i);
+                AddToStart(addmassive);
             }
+
+            else if (index < 0 || index > Length)
+            {
+            }
+            else if (index == Length)
+            {
+                this.Add(addmassive);
+            }
+            else
+            {
+             
+                Node previous = first;
+
+                for (int i = 0; i < index - 1; i++)
+                {
+                    previous = previous.Next;
+                }
+
+                Node tmpLast = last;
+                Node tmpNext = previous.Next;
+                last = previous;
+                this.Add(addmassive);
+                last.Next = tmpNext;
+                last = tmpLast;
+             
+               
+            }
+
         }
 
         public void RemoveOfIndex(int index)
@@ -290,9 +358,50 @@ namespace DataStructure
 
         public void RemoveOfIndex(int index, int quantity)
         {
-            for (int i = 0; i < quantity; i++)
+            //for (int i = 0; i < quantity; i++)
+            //{
+            //    this.RemoveOfIndex(index);
+            //}
+
+            if (index == 0)
             {
-                this.RemoveOfIndex(index);
+                this.RemoveFromStart(quantity);
+
+            }
+            else if (index < 0 || index > Length - 1)
+            {
+            }
+            else if (index == Length - 1)
+            {
+                this.Remove();
+            }
+            else if (quantity + index >= Length)
+            {
+                Node previous = first;
+
+                for (int i = 0; i < index - 1; i++)
+                {
+                    previous = previous.Next;
+                }
+                previous.Next = null;
+                last = previous;
+                Length = index;
+            }
+            else
+            {
+                Node previous = first;
+
+                for (int i = 0; i < index - 1; i++)
+                {
+                    previous = previous.Next;
+                }
+                Node next = previous;
+                for (int i = 0; i <= quantity; i++)
+                {
+                     next = next.Next;
+                }
+                previous.Next = next;
+                Length -= quantity;
             }
         }
 
@@ -547,6 +656,13 @@ namespace DataStructure
             }
 
             return maxIndex;
+        }
+
+        public void Clear()
+        {
+            first = null;
+            last = null;
+            Length = 0;
         }
     }
 

@@ -207,6 +207,7 @@ namespace DataStructureTest
         [TestCase(new int[] { 1, 3, 2 }, ExpectedResult = new int[] { 1, 2, 3 })]
         [TestCase(new int[] { 8, 0, 1, 5 }, ExpectedResult = new int[] { 0, 1, 5, 8 })]
         [TestCase(new int[] { 1 }, ExpectedResult = new int[] { 1 })]
+        [TestCase(new int[] { }, ExpectedResult = new int[] { })]
         public int[] SortUpTest(int[] massive)
         {
             testList.Add(massive);
