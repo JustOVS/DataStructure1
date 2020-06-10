@@ -27,7 +27,7 @@ namespace DataStructure
 
         public LinkedList(int[] a)
         {
-            for (int i = 0; i< a.Length; i++)
+            for (int i = 0; i < a.Length; i++)
             {
                 this.Add(a[i]);
             }
@@ -43,7 +43,7 @@ namespace DataStructure
                 }
                 else if (index == 0)
                 {
-                    return first.Value; 
+                    return first.Value;
                 }
                 else if (index < 0 || index > Length - 1)
                 {
@@ -213,10 +213,10 @@ namespace DataStructure
                 }
                 current.Next = null;
                 last = current;
-                Length-= quantity;
+                Length -= quantity;
             }
-            
-           
+
+
         }
 
         public void RemoveFromStart()
@@ -283,7 +283,7 @@ namespace DataStructure
                 }
                 tmp.Next = previous.Next;
                 previous.Next = tmp;
-            
+
                 Length++;
             }
         }
@@ -308,7 +308,7 @@ namespace DataStructure
             }
             else
             {
-             
+
                 Node previous = first;
 
                 for (int i = 0; i < index - 1; i++)
@@ -322,8 +322,8 @@ namespace DataStructure
                 this.Add(addmassive);
                 last.Next = tmpNext;
                 last = tmpLast;
-             
-               
+
+
             }
 
         }
@@ -338,7 +338,7 @@ namespace DataStructure
             else if (index < 0 || index > Length - 1)
             {
             }
-            else if (index == Length -1)
+            else if (index == Length - 1)
             {
                 this.Remove();
             }
@@ -398,7 +398,7 @@ namespace DataStructure
                 Node next = previous;
                 for (int i = 0; i <= quantity; i++)
                 {
-                     next = next.Next;
+                    next = next.Next;
                 }
                 previous.Next = next;
                 Length -= quantity;
@@ -445,7 +445,7 @@ namespace DataStructure
                 previous = current;
                 current = next;
             }
-            
+
         }
 
         public int MinItem()
@@ -460,25 +460,25 @@ namespace DataStructure
                 }
                 current = current.Next;
             }
-            
+
             return min;
         }
-        
+
 
         public int MaxItem()
         {
-        Node current = first;
-        int max = current.Value;
-        while (current != null)
-        {
-            if (current.Value > max)
+            Node current = first;
+            int max = current.Value;
+            while (current != null)
             {
-                max = current.Value;
+                if (current.Value > max)
+                {
+                    max = current.Value;
+                }
+                current = current.Next;
             }
-            current = current.Next;
-        }
 
-        return max;
+            return max;
         }
 
 
@@ -493,7 +493,7 @@ namespace DataStructure
                 Node previous = first;
                 Node min = first;
                 Node minPrevious = first;
-                
+
                 while (current != null)
                 {
                     if (current.Value < min.Value)
@@ -504,12 +504,12 @@ namespace DataStructure
                     previous = current;
                     current = current.Next;
                 }
-               
+
                 if (min == first)
                 {
                     first = first.Next;
                 }
-                else if (min == last) 
+                else if (min == last)
                 {
                     minPrevious.Next = null;
                     last = minPrevious;
@@ -518,7 +518,7 @@ namespace DataStructure
                 {
                     minPrevious.Next = minPrevious.Next.Next;
                 }
-                
+
                 if (tmpListFirst != null)
                 {
                     tmpListLast.Next = min;
@@ -537,7 +537,7 @@ namespace DataStructure
 
 
 
-    
+
 
         public void SortDown()
         {
@@ -592,7 +592,7 @@ namespace DataStructure
         }
 
         public void RemoveItem(int item)
-        { 
+        {
             Node previous = null;
             Node current = first;
 
@@ -603,7 +603,7 @@ namespace DataStructure
                     first = current.Next;
                     Length--;
                 }
-                else if ( current.Value == item)
+                else if (current.Value == item)
                 {
                     previous.Next = current.Next;
                     Length--;
@@ -658,12 +658,39 @@ namespace DataStructure
             return maxIndex;
         }
 
+        //Добавил дополнительные методы.
+
+
+
+
         public void Clear()
         {
             first = null;
             last = null;
             Length = 0;
         }
+
+        public int Pop()
+        {
+            if (Length == 0)
+            {
+                throw new InvalidOperationException();
+            }
+            int x = last.Value;
+            this.Remove();
+            return x;
+            
+        }
+
+        public Node CutNode()
+        {
+            Node tmp = last;
+            Remove();
+            return tmp;
+        }
+
+        
+
     }
 
 }

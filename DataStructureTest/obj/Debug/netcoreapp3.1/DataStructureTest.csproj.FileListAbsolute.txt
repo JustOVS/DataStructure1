@@ -190,3 +190,5 @@
 /Users/olegsitikov/Projects/DataStructure1/DataStructureTest/obj/Debug/netcoreapp3.1/DataStructureTest.csproj.CopyComplete
 /Users/olegsitikov/Projects/DataStructure1/DataStructureTest/obj/Debug/netcoreapp3.1/DataStructureTest.dll
 /Users/olegsitikov/Projects/DataStructure1/DataStructureTest/obj/Debug/netcoreapp3.1/DataStructureTest.pdb
+/Users/olegsitikov/Projects/DataStructure1/DataStructureTest/obj/Debug/netcoreapp3.1/DataStructureTest.csproj.CoreCompileInputs.cache
+/Users/olegsitikov/Projects/DataStructure1/DataStructureTest/obj/Debug/netcoreapp3.1/DataStructureTest.genruntimeconfig.cache

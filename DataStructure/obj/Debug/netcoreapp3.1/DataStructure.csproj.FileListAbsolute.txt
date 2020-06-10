@@ -18,3 +18,5 @@
 /Users/olegsitikov/Projects/DataStructure1/DataStructure/obj/Debug/netcoreapp3.1/DataStructure.AssemblyInfo.cs
 /Users/olegsitikov/Projects/DataStructure1/DataStructure/obj/Debug/netcoreapp3.1/DataStructure.dll
 /Users/olegsitikov/Projects/DataStructure1/DataStructure/obj/Debug/netcoreapp3.1/DataStructure.pdb
+/Users/olegsitikov/Projects/DataStructure1/DataStructure/obj/Debug/netcoreapp3.1/DataStructure.csproj.CoreCompileInputs.cache
+/Users/olegsitikov/Projects/DataStructure1/DataStructure/obj/Debug/netcoreapp3.1/DataStructure.genruntimeconfig.cache
