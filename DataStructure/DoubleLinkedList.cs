@@ -47,7 +47,7 @@ namespace DataStructure
                 {
                     throw new IndexOutOfRangeException();
                 }
-                else if (index <= Length/2)
+                else if (index <= Length / 2)
                 {
                     L2Node current = first;
 
@@ -71,7 +71,7 @@ namespace DataStructure
                 }
 
 
-                
+
             }
 
             set
@@ -86,6 +86,7 @@ namespace DataStructure
                 }
                 else if (index < 0 || index > Length - 1)
                 {
+                    throw new IndexOutOfRangeException();
                 }
                 else if (index <= Length / 2)
                 {
@@ -146,7 +147,7 @@ namespace DataStructure
             }
             return array;
         }
-      
+
         public void AddToStart(int a)
         {
             if (first != null)
@@ -190,11 +191,8 @@ namespace DataStructure
                 last = null;
                 Length = 0;
             }
-            else if (first == null)
-            {
+            else if (first != null)
 
-            }
-            else
             {
                 last.Previous.Next = null;
                 last = last.Previous;
@@ -218,11 +216,8 @@ namespace DataStructure
                 last = null;
                 Length = 0;
             }
-            else if (first == null)
-            {
+            else if (first != null)
 
-            }
-            else
             {
                 first = first.Next;
                 first.Previous = null;
@@ -247,6 +242,7 @@ namespace DataStructure
 
             else if (index < 0 || index > Length)
             {
+                throw new IndexOutOfRangeException();
             }
             else if (index == Length)
             {
@@ -284,7 +280,7 @@ namespace DataStructure
 
                 Length++;
             }
-            
+
         }
 
         public void Insert(int[] addmassive, int index)
@@ -304,12 +300,13 @@ namespace DataStructure
             }
             else if (index < 0 || index > Length - 1)
             {
+                throw new IndexOutOfRangeException();
             }
             else if (index == Length - 1)
             {
                 this.Remove();
             }
-            else if (index <= Length/2)
+            else if (index <= Length / 2)
             {
                 L2Node previous = first;
 
@@ -350,6 +347,7 @@ namespace DataStructure
             }
             else if (index < 0 || index > Length - 1)
             {
+                throw new IndexOutOfRangeException();
             }
             else if (index == Length - quantity)
             {
@@ -370,7 +368,7 @@ namespace DataStructure
                 }
                 previous.Next = next;
                 next.Previous = previous;
-                Length-= quantity;
+                Length -= quantity;
             }
             else
             {
@@ -524,71 +522,141 @@ namespace DataStructure
             last = tmpListLast;
         }
 
-
+        public void SwapNodes(L2Node a, L2Node b)
+        {
+            a.Next = b.Next;
+            b.Next.Previous = a;
+            a.Previous.Next = b;
+            b.Previous = a.Previous;
+            b.Next = a;
+            a.Previous = b;
+        }
 
 
 
 
         public void SortDown()
         {
-            L2Node tmpListFirst = null;
-            L2Node tmpListLast = null;
-
             for (int i = 0; i < Length; i++)
             {
                 L2Node current = first;
-                L2Node max = first;
-
-
-                while (current != null)
+                for (int j = 0; j < Length - 1 - i; j++)
                 {
-                    if (current.Value > max.Value)
+
+                    if (current.Value < current.Next.Value)
                     {
-                        max = current;
+                        if (j == 0 && j == Length - 2)
+                        {
+
+                            L2Node a = current;
+                            L2Node b = current.Next;
+
+                            b.Next = a;
+                            a.Previous = b;
+                            a.Next = null;
+                            b.Previous = null;
+                            first = b;
+                            last = a;
+                        }
+                        else if (j == 0)
+                        {
+
+                            L2Node a = current;
+                            L2Node b = current.Next;
+                            a.Next = b.Next;
+                            b.Next.Previous = a;
+                            b.Previous = null;
+                            b.Next = a;
+                            a.Previous = b;
+                            first = b;
+
+                        }
+                        else if (j == Length -2)
+                        {
+                            L2Node a = current;
+                            L2Node b = current.Next;
+                            
+                            b.Previous = a.Previous;
+                            a.Previous.Next = b;
+                            b.Next = a;
+                            a.Previous = b;
+                            a.Next = null;
+                            last = a;
+
+                        }
+                        else
+                        {
+                            SwapNodes(current, current.Next);
+                        }
+
                     }
-                    current = current.Next;
-                }
-                if (first == last)
-                {
-                    first = null;
-                    last = null;
-                }
-                else if (max == first)
-                {
-                    first.Next.Previous = null;
-                    first = first.Next;
+                    else
+                    {
+                        
+                        current = current.Next;
+                    }
 
-                }
-                else if (max == last)
-                {
-                    last.Previous.Next = null;
-                    last = last.Previous;
-                }
-                else
-                {
-                    max.Previous.Next = max.Next;
-                    max.Next.Previous = max.Previous;
-                }
 
-                if (tmpListFirst != null)
-                {
-                    tmpListLast.Next = max;
-                    max.Previous = tmpListLast;
-                    tmpListLast = tmpListLast.Next;
-                }
-                else
-                {
-                    tmpListFirst = max;
-                    tmpListLast = tmpListFirst;
                 }
             }
-            first = tmpListFirst;
-            last = tmpListLast;
+            //L2Node tmpListFirst = null;
+            //L2Node tmpListLast = null;
+
+            //for (int i = 0; i < Length; i++)
+            //{
+            //    L2Node current = first;
+            //    L2Node max = first;
+
+
+            //    while (current != null)
+            //    {
+            //        if (current.Value > max.Value)
+            //        {
+            //            max = current;
+            //        }
+            //        current = current.Next;
+            //    }
+            //    if (first == last)
+            //    {
+            //        first = null;
+            //        last = null;
+            //    }
+            //    else if (max == first)
+            //    {
+            //        first.Next.Previous = null;
+            //        first = first.Next;
+
+            //    }
+            //    else if (max == last)
+            //    {
+            //        last.Previous.Next = null;
+            //        last = last.Previous;
+            //    }
+            //    else
+            //    {
+            //        max.Previous.Next = max.Next;
+            //        max.Next.Previous = max.Previous;
+            //    }
+
+            //    if (tmpListFirst != null)
+            //    {
+            //        tmpListLast.Next = max;
+            //        max.Previous = tmpListLast;
+            //        tmpListLast = tmpListLast.Next;
+            //    }
+            //    else
+            //    {
+            //        tmpListFirst = max;
+            //        tmpListLast = tmpListFirst;
+            //    }
+            //}
+            //first = tmpListFirst;
+            //last = tmpListLast;
         }
 
         public void RemoveItem(int item)
         {
-            
+
             L2Node current = first;
 
             while (current != null)
@@ -597,7 +665,7 @@ namespace DataStructure
                 {
                     first = null;
                     last = null;
-                    Length--;  
+                    Length--;
                 }
                 else if (current.Value == item && current.Previous == null)
                 {
@@ -617,7 +685,7 @@ namespace DataStructure
                     current.Next.Previous = current.Previous;
                     Length--;
                 }
-                
+
                 current = current.Next;
 
             }

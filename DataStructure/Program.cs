@@ -51,8 +51,8 @@ namespace DataStructure
             //    Console.WriteLine(a[i]);
             //}
             //Console.WriteLine(a.Length);
-            IDataStructure aaa = new L2List(new int[] {});
-            aaa.SortUp();
+            IDataStructure aaa = new L2List(new int[] {1, 3, 2, 5, 10, 12});
+            aaa.SortDown();
             int[] b = aaa.ReturnMassive();
             for (int i = 0; i < b.Length; i++)
             {

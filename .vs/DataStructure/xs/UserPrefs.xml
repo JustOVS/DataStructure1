@@ -1,10 +1,12 @@
 ﻿<Properties StartupConfiguration="{00E3E966-9543-40AC-A90B-B830BF34BE18}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="DataStructure/LinkedList.cs">
     <Files>
-      <File FileName="DataStructure/Program.cs" Line="58" Column="14" />
+      <File FileName="DataStructure/Program.cs" Line="54" Column="1" />
       <File FileName="DataStructure/Node2d.cs" />
-      <File FileName="DataStructure/LinkedList.cs" Line="693" Column="1" />
+      <File FileName="DataStructure/LinkedList.cs" Line="33" Column="1" />
       <File FileName="DataStructure/DoubleLinkedList.cs" Line="1" Column="1" />
+      <File FileName="DataStructure/IDataStructure.cs" Line="1" Column="1" />
+      <File FileName="DataStructure/Node.cs" Line="18" Column="1" />
       <File FileName="DataStructureTest/UnitTest1.cs" Line="213" Column="35" NotebookId="1" />
     </Files>
     <Pads>
@@ -12,7 +14,7 @@
         <State name="__root__">
           <Node name="DataStructure" expanded="True">
             <Node name="DataStructure" expanded="True">
-              <Node name="DoubleLinkedList.cs" selected="True" />
+              <Node name="IDataStructure.cs" selected="True" />
             </Node>
             <Node name="DataStructureTest" expanded="True" />
           </Node>
@@ -31,6 +33,7 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/olegsitikov/Projects/DataStructure1/DataStructure/DoubleLinkedList.cs" relfile="DataStructure/DoubleLinkedList.cs" line="186" column="1" />
+      <Breakpoint file="/Users/olegsitikov/Projects/DataStructure1/DataStructure/Program.cs" relfile="DataStructure/Program.cs" line="54" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

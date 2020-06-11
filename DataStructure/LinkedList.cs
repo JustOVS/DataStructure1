@@ -78,6 +78,7 @@ namespace DataStructure
                 }
                 else if (index < 0 || index > Length - 1)
                 {
+                    throw new IndexOutOfRangeException();
                 }
                 else
                 {
@@ -170,11 +171,7 @@ namespace DataStructure
                 last = null;
                 Length = 0;
             }
-            else if (first == null)
-            {
-
-            }
-            else
+            else if (first != null)
             {
                 Node current = first;
                 while (current.Next != last)
@@ -200,11 +197,8 @@ namespace DataStructure
                 last = null;
                 Length = 0;
             }
-            else if (first == null)
-            {
+            else if (first != null)
 
-            }
-            else
             {
                 Node current = first;
                 for (int i = 0; i < Length - quantity - 1; i++)
@@ -227,11 +221,8 @@ namespace DataStructure
                 last = null;
                 Length = 0;
             }
-            else if (first == null)
-            {
+            else if (first != null)
 
-            }
-            else
             {
                 first = first.Next;
                 Length--;
@@ -267,6 +258,7 @@ namespace DataStructure
 
             else if (index < 0 || index > Length)
             {
+                throw new IndexOutOfRangeException();
             }
             else if (index == Length)
             {
@@ -301,6 +293,7 @@ namespace DataStructure
 
             else if (index < 0 || index > Length)
             {
+                throw new IndexOutOfRangeException();
             }
             else if (index == Length)
             {
@@ -337,6 +330,7 @@ namespace DataStructure
             }
             else if (index < 0 || index > Length - 1)
             {
+                throw new IndexOutOfRangeException();
             }
             else if (index == Length - 1)
             {
@@ -370,6 +364,7 @@ namespace DataStructure
             }
             else if (index < 0 || index > Length - 1)
             {
+                throw new IndexOutOfRangeException();
             }
             else if (index == Length - 1)
             {
@@ -541,54 +536,93 @@ namespace DataStructure
 
         public void SortDown()
         {
-            Node tmpListFirst = null;
-            Node tmpListLast = null;
-
             for (int i = 0; i < Length; i++)
             {
                 Node current = first;
                 Node previous = first;
-                Node max = first;
-                Node maxPrevious = first;
-
-                while (current != null)
+                for (int j = 0; j < Length - 1 - i; j++)
                 {
-                    if (current.Value > max.Value)
+                    if (current.Next != null)
                     {
-                        max = current;
-                        maxPrevious = previous;
+                        if (current.Value < current.Next.Value)
+                        {
+                            if (j == 0)
+                            {
+                                first = current.Next;
+                                current.Next = first.Next;
+                                first.Next = current;
+                                previous = first;
+                            }
+                            else
+                            {
+                                previous.Next = current.Next;
+                                current.Next = previous.Next.Next;
+                                previous.Next.Next = current;
+                                previous = previous.Next;
+                            }
+                            if (j == Length - 2)
+                            {
+                                last = current;
+                            }
+                        }
+                        else
+                        {
+                            previous = current;
+                            current = current.Next;
+                        }
                     }
-                    previous = current;
-                    current = current.Next;
+                    
                 }
 
-                if (max == first)
-                {
-                    first = first.Next;
-                }
-                else if (max == last)
-                {
-                    maxPrevious.Next = null;
-                    last = maxPrevious;
-                }
-                else
-                {
-                    maxPrevious.Next = maxPrevious.Next.Next;
-                }
-
-                if (tmpListFirst != null)
-                {
-                    tmpListLast.Next = max;
-                    tmpListLast = tmpListLast.Next;
-                }
-                else
-                {
-                    tmpListFirst = max;
-                    tmpListLast = tmpListFirst;
-                }
             }
-            first = tmpListFirst;
-            last = tmpListLast;
+            //    Node tmpListFirst = null;
+            //    Node tmpListLast = null;
+
+            //    for (int i = 0; i < Length; i++)
+            //    {
+            //        Node current = first;
+            //        Node previous = first;
+            //        Node max = first;
+            //        Node maxPrevious = first;
+
+            //        while (current != null)
+            //        {
+            //            if (current.Value > max.Value)
+            //            {
+            //                max = current;
+            //                maxPrevious = previous;
+            //            }
+            //            previous = current;
+            //            current = current.Next;
+            //        }
+
+            //        if (max == first)
+            //        {
+            //            first = first.Next;
+            //        }
+            //        else if (max == last)
+            //        {
+            //            maxPrevious.Next = null;
+            //            last = maxPrevious;
+            //        }
+            //        else
+            //        {
+            //            maxPrevious.Next = maxPrevious.Next.Next;
+            //        }
+
+            //        if (tmpListFirst != null)
+            //        {
+            //            tmpListLast.Next = max;
+            //            tmpListLast = tmpListLast.Next;
+            //        }
+            //        else
+            //        {
+            //            tmpListFirst = max;
+            //            tmpListLast = tmpListFirst;
+            //        }
+            //    }
+            //    first = tmpListFirst;
+            //    last = tmpListLast;
         }
 
         public void RemoveItem(int item)
@@ -679,7 +713,7 @@ namespace DataStructure
             int x = last.Value;
             this.Remove();
             return x;
-            
+
         }
 
         public Node CutNode()
@@ -689,7 +723,7 @@ namespace DataStructure
             return tmp;
         }
 
-        
+
 
     }
 
